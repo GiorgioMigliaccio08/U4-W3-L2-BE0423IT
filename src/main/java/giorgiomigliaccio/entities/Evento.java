@@ -1,16 +1,16 @@
 package giorgiomigliaccio.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
 @Table (name = "eventi")
 public class Evento {
     @Id
+    @GeneratedValue
     private long id;
+
+
 
     @Column (name= "titolo")
     private String titolo;
@@ -22,9 +22,11 @@ public class Evento {
     private tipoEvento tipoEvento;
 
     @Column (name= "numeroMassimoPartecipanti")
-    private Integer numeroMassimoPartecipanti;
+    private String numeroMassimoPartecipanti;
 
-    public Evento(String titolo, String dataEvento, tipoEvento tipoEvento, Integer numeroMassimoPartecipanti ) {
+    public Evento (){}
+
+    public Evento(String titolo, String dataEvento, tipoEvento tipoEvento, String numeroMassimoPartecipanti ) {
         this.titolo= titolo;
         this.dataEvento = dataEvento;
         this.tipoEvento = tipoEvento;
@@ -55,11 +57,22 @@ public class Evento {
         this.tipoEvento = tipoEvento;
     }
 
-    public Integer getNumeroMassimoPartecipanti() {
+    public String getNumeroMassimoPartecipanti() {
         return numeroMassimoPartecipanti;
     }
 
-    public void setNumeroMassimoPartecipanti(Integer numeroMassimoPartecipanti) {
+    public void setNumeroMassimoPartecipanti(String numeroMassimoPartecipanti) {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
+    }
+
+    @Override
+    public String toString() {
+        return "Evento{" +
+                "id=" + id +
+                ", Titolo='" + titolo + '\'' +
+                ", Data Evento='" + dataEvento + '\'' +
+                ", Tipo Evento=" + tipoEvento +
+                ", N partecipanti=" + numeroMassimoPartecipanti +
+                '}';
     }
 }
