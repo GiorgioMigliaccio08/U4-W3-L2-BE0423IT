@@ -1,12 +1,10 @@
 package giorgiomigliaccio.entities;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 public class Persona {
+    @Entity
     @Table(name = "persona")
     public class persona {
         @Id
@@ -14,23 +12,27 @@ public class Persona {
         private long id;
 
 
-        @Column(name = "name")
+
         private String name;
 
-        @Column(name = "surname")
+
         private String surname;
 
-        @Column(name = "email")
+
         private String email;
 
-        @Column(name = "data di nascita")
+
         private LocalDate datadinascita;
 
-        @Column(name = "sesso")
+
         private String sesso;
 
-        @Column(name = "listapartecipazioni")
+
         private String listapartecipazioni;
+
+        @OneToOne
+        @JoinColumn (name = "partecipazione_id")
+        private Partecipazione partecipazione;
 
         public persona(long id, String name, String surname, String email, LocalDate datadinascita, String sesso, String listapartecipazioni) {
             this.id = id;
@@ -88,6 +90,19 @@ public class Persona {
 
         public void setListapartecipazioni(String listapartecipazioni) {
             this.listapartecipazioni = listapartecipazioni;
+        }
+
+        @Override
+        public String toString() {
+            return "persona{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", surname='" + surname + '\'' +
+                    ", email='" + email + '\'' +
+                    ", datadinascita=" + datadinascita +
+                    ", sesso='" + sesso + '\'' +
+                    ", listapartecipazioni='" + listapartecipazioni + '\'' +
+                    '}';
         }
     }
     }

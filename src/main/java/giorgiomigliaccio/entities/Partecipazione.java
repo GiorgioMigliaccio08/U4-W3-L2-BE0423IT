@@ -1,14 +1,10 @@
 package giorgiomigliaccio.entities;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import javax.persistence.*;
 
 
 public class Partecipazione {
-
+    @Entity
     @Table(name = "partecipazione")
     public class partecipazione {
         @Id
@@ -16,14 +12,16 @@ public class Partecipazione {
         private long id;
 
 
-        @Column(name = "persona")
+        @OneToOne(mappedBy = "persona")
         private String persona;
 
-        @Column(name = "evento")
+
         private String evento;
 
-        @Column(name = "stato")
+
         private statoPartecipazione statoPartecipazione;
+
+
 
         public partecipazione(String persona, String evento, statoPartecipazione statoPartecipazione ) {
             this.persona = persona;
@@ -54,5 +52,15 @@ public class Partecipazione {
         public void setStatoPartecipazione(giorgiomigliaccio.entities.statoPartecipazione statoPartecipazione) {
             this.statoPartecipazione = statoPartecipazione;
         }
+
+        @Override
+        public String toString() {
+            return "partecipazione{" +
+                    "id=" + id +
+                    ", persona='" + persona + '\'' +
+                    ", evento='" + evento + '\'' +
+                    ", statoPartecipazione=" + statoPartecipazione +
+                    '}';
         }
+    }
     }

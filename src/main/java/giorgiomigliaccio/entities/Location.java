@@ -1,12 +1,9 @@
 package giorgiomigliaccio.entities;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 public class Location {
-
+    @Entity
     @Table(name = "location")
     public class location {
         @Id
@@ -14,11 +11,15 @@ public class Location {
         private long id;
 
 
-        @Column(name = "nome")
+
         private String nome;
 
-        @Column(name = "città")
+
         private String città;
+
+        @OneToOne
+        @JoinColumn(name = "location_id")
+        private Location location;
 
         public location(String nome, String città) {
             this.nome = nome;
@@ -39,6 +40,15 @@ public class Location {
 
         public void setCittà(String città) {
             this.città = città;
+        }
+
+        @Override
+        public String toString() {
+            return "location{" +
+                    "id=" + id +
+                    ", nome='" + nome + '\'' +
+                    ", città='" + città + '\'' +
+                    '}';
         }
     }
     }
