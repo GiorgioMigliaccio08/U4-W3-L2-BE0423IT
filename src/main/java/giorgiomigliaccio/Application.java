@@ -16,7 +16,7 @@ public class Application {
         EntityManager em = emf.createEntityManager();
         EventiDAO sd = new EventiDAO(em);
 
-        Evento  Concerto = new Evento("Live Moda", "luglio 2023", tipoEvento.PUBBLICO, "50" );
+        Evento  Concerto = new Evento("Live Moda", "luglio 2023", tipoEvento.PUBBLICO, "cento");
 
         sd.save(Concerto);
         em.close();
